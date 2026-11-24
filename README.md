@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# To-do List
+
+A small, client-side to-do list built with Next.js, React, TypeScript, and Tailwind CSS.
+
+## Live App
+
+Try the deployed app: [aqdas-todo-list.vercel.app](https://aqdas-todo-list.vercel.app)
+
+## Features
+
+- Add a task with a title and description.
+- Remove a task using the trash button.
+- Clear the form fields after adding a task.
+- Show an empty-state message when there are no tasks.
+- Use a responsive, centered layout with smaller padding on mobile screens.
+
+Tasks are kept in React state in the browser. They are not saved to a database or browser storage, so they disappear when the page is refreshed.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In Windows PowerShell, if `npm` is blocked by the script execution policy, use the Windows command shim:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+npm.cmd run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to use the app.
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+The page is implemented in [`src/app/page.tsx`](./src/app/page.tsx) as a client component so it can use React state and form event handlers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `TaskItem` defines the shape of each task (`task` and `desc`).
+- `alltasks` stores the list of tasks in component state.
+- Submitting the form adds the current title and description to that list, then clears both inputs.
+- The list is rendered from `alltasks`; each trash button removes the task at its corresponding array index.
+- Tailwind CSS utility classes style the form, task area, and responsive spacing.
+- The delete control uses the `Trash2` icon from `lucide-react`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Available Commands
 
-## Deploy on Vercel
+```bash
+npm run dev    # Start the development server
+npm run lint   # Run ESLint
+npm run build  # Create a production build
+npm run start  # Serve the production build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use `npm.cmd` instead of `npm` for these commands in Windows PowerShell if the `npm.ps1` execution policy error occurs.
